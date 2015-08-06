@@ -1,0 +1,57 @@
+[13:20:15] [main/INFO] [LaunchWrapper]: Loading tweak class name cpw.mods.fml.common.launcher.FMLTweaker
+[13:20:15] [main/ERROR] [LaunchWrapper]: Unable to launch
+java.lang.ClassNotFoundException: cpw.mods.fml.common.launcher.FMLTweaker
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_51]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at net.minecraft.launchwrapper.LaunchClassLoader.findClass(LaunchClassLoader.java:106) ~[launchwrapper-1.11.jar:?]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_51]
+	at java.lang.Class.forName(Unknown Source) ~[?:1.8.0_51]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:98) [launchwrapper-1.11.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.11.jar:?]
+[13:26:04] [main/INFO] [LaunchWrapper]: Loading tweak class name cpw.mods.fml.common.launcher.FMLTweaker
+[13:26:04] [main/ERROR] [LaunchWrapper]: Unable to launch
+java.lang.ClassNotFoundException: cpw.mods.fml.common.launcher.FMLTweaker
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_51]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at net.minecraft.launchwrapper.LaunchClassLoader.findClass(LaunchClassLoader.java:106) ~[launchwrapper-1.11.jar:?]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_51]
+	at java.lang.Class.forName(Unknown Source) ~[?:1.8.0_51]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:98) [launchwrapper-1.11.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.11.jar:?]
+[13:27:49] [main/INFO] [LaunchWrapper]: Loading tweak class name cpw.mods.fml.common.launcher.FMLTweaker
+[13:27:49] [main/ERROR] [LaunchWrapper]: Unable to launch
+java.lang.ClassNotFoundException: cpw.mods.fml.common.launcher.FMLTweaker
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_51]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at net.minecraft.launchwrapper.LaunchClassLoader.findClass(LaunchClassLoader.java:106) ~[launchwrapper-1.11.jar:?]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_51]
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_51]
+	at java.lang.Class.forName(Unknown Source) ~[?:1.8.0_51]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:98) [launchwrapper-1.11.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.11.jar:?]
+[13:28:25] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:28:26] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:28:26] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:29:34] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:29:34] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:29:34] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:32:23] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:32:23] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:32:23] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:42:18] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:42:19] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:42:19] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:43:50] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:43:50] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[13:43:50] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
