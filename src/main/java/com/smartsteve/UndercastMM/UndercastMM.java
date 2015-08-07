@@ -20,12 +20,12 @@ import org.apache.logging.log4j.Logger;
 
 class Data{
 	int kill, killed, death, killstreak;                     //Need update while playing.   플레이 중간중간 업데이트
-	int firstkill, firstdeath;                               //Read From oc.tc when Mod Load   젤 처음에 한번만 받아옴
+	int firstkill, firstdeath, firstkilled;                  //Read From oc.tc when Mod Load   젤 처음에 한번만 받아옴
 	double kd,kk,Tkd,Tkk;                                    //Update when kill,killed,death update		kill,killed,death가 업데이트 될때 같이 업데이트됨												 
 	int maxkillstreak;
 	boolean containdata;
 	public Data(){
-		Tkk=kill=killed=death=killstreak=firstkill=firstdeath=maxkillstreak=0; //reset var
+		Tkk=kill=killed=death=killstreak=firstkill=firstdeath=maxkillstreak=firstkilled=0; //reset var
 		kd=kk=Tkd=Tkk=0.00D;
 		containdata =false;
 	}
@@ -65,6 +65,7 @@ public class UndercastMM
     		int[] tmp = wp.getkd(Minecraft.getMinecraft().thePlayer.getDisplayNameString());
     		d.firstkill = tmp[0];
     		d.firstdeath = tmp[1];
+    		d.firstkilled = tmp[2];
     		d.containdata = true;
     	}
     	if (message_unform.startsWith("<") || message_unform.startsWith("[") || message_unform.startsWith("(From ") || message_unform.startsWith("(To ") || message_unform.startsWith("[Tip] ")) {
@@ -130,19 +131,28 @@ public class UndercastMM
     	}
     }
     public void updateRatio(){
+    	
+    	//Update KD
     	double ratio_KD = 0.00D;
-	      if(d.death!=0) ratio_KD = Double.valueOf(d.kill)/Double.valueOf(d.death);  // Death != 0
-	      else ratio_KD = (double) d.kill;                                           // Death == 0
-	      d.kd = ratio_KD;
-	      //Update Total KD
-	      ratio_KD = 0.00D;
-	      if((d.death+d.firstdeath)!=0) ratio_KD = Double.valueOf(d.kill+d.firstkill)/Double.valueOf(d.death+d.firstdeath);
-	      else ratio_KD = (double) d.firstkill + d.kill;
-	      d.Tkd = ratio_KD;
-	      //Update KK
-	      double ratio_KK = 0.00D;
-	      if(d.killed !=0) ratio_KK = Double.valueOf(d.kill)/Double.valueOf(d.killed);
-	      else ratio_KK = (double)d.kill;
-	      d.kk = ratio_KK;
+    	if(d.death!=0) ratio_KD = Double.valueOf(d.kill)/Double.valueOf(d.death);  // Death != 0
+    	else ratio_KD = (double) d.kill;                                           // Death == 0
+    	d.kd = ratio_KD;
+    	
+    	//Update Total KD
+    	ratio_KD = 0.00D;
+    	if((d.death+d.firstdeath)!=0) ratio_KD = Double.valueOf(d.kill+d.firstkill)/Double.valueOf(d.death+d.firstdeath);
+    	else ratio_KD = (double) d.firstkill + d.kill;
+    	d.Tkd = ratio_KD;
+    	
+    	//Update Total KK
+    	double ratio_KK = 0.00D;
+    	if((d.firstkilled+d.killed) != 0) ratio_KK = Double.valueOf(d.kill)/Double.valueOf(d.killed+d.firstkilled);
+    	else ratio_KK = (double)d.kill;
+    	d.Tkk = ratio_KK;
+    	//Update KK
+    	ratio_KK = 0.00D;
+    	if(d.killed !=0) ratio_KK = Double.valueOf(d.kill)/Double.valueOf(d.killed);
+    	else ratio_KK = (double)d.kill;
+    	d.kk = ratio_KK;
     }
 }
