@@ -64,5 +64,7 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/JUN/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl-platform/2.9.1/2d12c83fdfbc04ecabf02c7bc8cc54d034f0daac/lwjgl-platform-2.9.1-natives-osx.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/JUN/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/JUN/.gradle/caches/minecraft/net/minecraftforge/forge/1.8-11.14.3.1450/start"/>
+	<classpathentry kind="lib" path="libs/overcast-api-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="libs/overcast-scraper-1.0-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
