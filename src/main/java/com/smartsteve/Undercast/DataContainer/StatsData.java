@@ -1,15 +1,14 @@
 package com.smartsteve.Undercast.DataContainer;
 
 public class StatsData {
-	private int kill, killed, death, killstreak;                     //Need update while playing.   
-	private double kd,kk;                                    //Update when kill,killed,death update		kill,killed,death								 
+	private int kill, death, killstreak;                     //Need update while playing.   
+	private double kd;                                    //Update when kill,killed,death update		kill,killed,death								 
 	private int maxkillstreak;
 	public StatsData(){
-		this(0,0,0);
+		this(0,0);
 	}
-	public StatsData(int tkill, int tkilled, int tdeath){
+	public StatsData(int tkill, int tdeath){
 		kill = tkill;
-		killed = tkilled;
 		death = tdeath;
 		killstreak=0;
 		maxkillstreak=0;
@@ -18,15 +17,9 @@ public class StatsData {
 	private void update(){
 		if(death==0)kd=kill;
 		else kd=Double.valueOf(Double.valueOf(kill)/Double.valueOf(death));
-		if(killed==0)kk=kill;
-		else kk=Double.valueOf(Double.valueOf(kill)/Double.valueOf(killed));
 	}
 	public void setKill(int t){
 		kill = t;
-		update();
-	}
-	public void setKilled(int t){
-		killed = t;
 		update();
 	}
 	public void setDeath(int t){
@@ -35,9 +28,6 @@ public class StatsData {
 	}
 	public int getKill(){
 		return kill;
-	}
-	public int getKilled(){
-		return killed;
 	}
 	public int getDeath(){
 		return death;
@@ -48,9 +38,6 @@ public class StatsData {
 	public double getKd(){
 		return kd;
 	}
-	public double getKk(){
-		return kk;
-	}
 	public int getMaxKillStreak(){
 		return maxkillstreak;
 	}
@@ -58,12 +45,6 @@ public class StatsData {
 		kill++;
 		killstreak++;
 		if(killstreak>maxkillstreak) maxkillstreak = killstreak;
-		update();
-	}
-	public void addKilled(){
-		killed++;
-		death++;
-		killstreak = 0;
 		update();
 	}
 	public void addDeath(){

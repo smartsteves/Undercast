@@ -1,13 +1,25 @@
 package com.smartsteve.Undercast.Parser;
 
-import static me.ryanw.overcast.impl.OvercastAPI.getPlayer;
-import me.ryanw.overcast.impl.object.ParsedPlayer;
-
-import com.smartsteve.Undercast.DataContainer.StatsData;
 public class WebParser {
-	public static StatsData parseData(String name){
-		ParsedPlayer p = (ParsedPlayer)getPlayer(name);
-		return new StatsData(p.getGlobalKills(),(int)(p.getGlobalKills()*p.getGlobalKdRatio()),p.getGlobalDeaths());
+	// Old Source Code
+	/*public StatsData parseData(String name){
+		//This API was broken
+		//OvercastAPI api = new OvercastAPI();
+		//ParsedPlayer p = (ParsedPlayer)api.getPlayer(name);
+		//Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("HOLA!!!!!!!!!!"));
+		//return new StatsData(p.getGlobalKills(),(int)(p.getGlobalKills()*p.getGlobalKdRatio()),p.getGlobalDeaths());
 		//return new StatsData();
-	}
+		try{
+			URL playerurl = new URL("https://oc.tc/users/"+name);
+			HttpURLConnection playerhttp = (HttpURLConnection)playerurl.openConnection();
+			JSONObject main = (JSONObject)JSONValue.parse(new InputStreamReader(playerhttp.getInputStream()));
+			FileWriter file = new FileWriter("C:\\jsontest.json");
+			file.write(main.toJSONString());
+			file.flush();
+			file.close();
+			Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("ASDOPOW"));
+		}
+		catch(Throwable e){}
+		return new StatsData();
+	}*/
 }
