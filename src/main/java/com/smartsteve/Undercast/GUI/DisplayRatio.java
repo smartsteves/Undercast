@@ -43,7 +43,7 @@ public class DisplayRatio {
 			 int x = 2, y = 2;
 			 
 			 if (option.fps){
-				 mc.fontRendererObj.drawStringWithShadow("FPS: "+mc.debug.split(",")[0].split(" fps")[0], x, y, 16777215);
+				 mc.fontRendererObj.drawStringWithShadow("FPS: "+Minecraft.getDebugFPS(), x, y, 16777215);
 				 y+=mc.fontRendererObj.FONT_HEIGHT;
 			 }
 			 if(option.server){
