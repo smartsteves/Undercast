@@ -10,7 +10,7 @@ import com.smartsteve.Undercast.DataContainer.StatsData;
 public class WebParser {
 	// Old Source Code
 	//Use it because OvercastStatsAPI didn't work
-	public StatsData getPlayerStat(String name){
+	public static StatsData getPlayerStat(String name){
 		StringBuffer strbf = new StringBuffer();
 		try {
 			URL url = new URL("https://oc.tc/users/"+name);
