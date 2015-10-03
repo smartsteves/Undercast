@@ -50,7 +50,6 @@ public class ChatParser {
     	}
     	
     	 // Filter Server Change
-    	
     	if(message_unform.startsWith("Connecting you to ")||message_unform.startsWith("Teleporting you to")){
     		serverdata.setTeam("Observer");
     		serverdata.setTeamColor("b");
@@ -68,7 +67,20 @@ public class ChatParser {
     	 // Filter Map Information
     	
     	if(message_unform.startsWith("---")&&!message_unform.contains("Match Info")&&!message_unform.contains("Overcast Network Servers")&&!message_unform.contains("Current Rotation")&&!message_unform.contains("Friends")){
-    		serverdata.setMap(message_unform.replace("-", "").substring(1, message_unform.replace("-", "").length()-6));
+    		String s = message_unform.replace("-", "").trim();
+    		char[] tc = s.toCharArray();
+    		StringBuilder sb = new StringBuilder();
+    		for(int i=0;i<tc.length-2;i++){
+    			sb.append(tc[i]);
+    			if(tc[i]==' '&&(tc[i+2]=='.'||tc[i+3]=='.'))break;
+    		}
+    		serverdata.setMap(sb.toString());
+    		return;
+    	}
+    	if(message_unform.contains("Match Info")){
+    		Minecraft.getMinecraft().thePlayer.sendChatMessage("/myteam");
+    		Minecraft.getMinecraft().thePlayer.sendChatMessage("/mapnext");
+    		Minecraft.getMinecraft().thePlayer.sendChatMessage("/map");
     		return;
     	}
     	
@@ -77,6 +89,7 @@ public class ChatParser {
     	if(message_unform.startsWith("Match starting in 20 seconds")){
     		serverdata.setTeam("Observer");
     		serverdata.setTeamColor("b");
+    		Minecraft.getMinecraft().thePlayer.sendChatMessage("/myteam");
     		Minecraft.getMinecraft().thePlayer.sendChatMessage("/mapnext");
     		Minecraft.getMinecraft().thePlayer.sendChatMessage("/map");
     		return;
@@ -91,10 +104,10 @@ public class ChatParser {
     	}
     	
     	// Filter Time
-    	if(message_unform.startsWith("Time: ")){
+    	/*if(message_unform.startsWith("Time: ")){
     		player.addChatMessage(new ChatComponentText(message_unform.replace("Time: ", "").split(".")[0]));
     		return;
-    	}
+    	}*/
     	
     	// Filter Team Information
 
@@ -107,17 +120,8 @@ public class ChatParser {
     	 //  Parse Data From Homepage
 
     	if(message_unform.contains("Welcome to the Overcast Network Lobby!")){
-    		player.addChatMessage(new ChatComponentText(Minecraft.getMinecraft().thePlayer.getDisplayNameString()));
     		serverdata.setServer("Lobby");
-    		if(isFirstJoin){
-    			/*overcastStat.getPlayerByNameAsync("smartsteve", new Callback<OvercastPlayer>() {
-    		        public void call(OvercastPlayer result) {
-    		        	Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("gokfeo"));
-    		           	firstdata = new StatsData(result.getGlobalStats().getGlobalKills(), result.getGlobalStats().getGlobalDeaths());
-    		        }
-    		    });*/
-    			firstdata= (new WebParser()).getPlayerStat(Minecraft.getMinecraft().thePlayer.getDisplayNameString());
-    		}
+    		firstdata = WebParser.getPlayerStat(Minecraft.getMinecraft().thePlayer.getDisplayNameString());
     		return;
     	}
 
