@@ -1,7 +1,5 @@
 package com.smartsteve.Undercast.Parser;
 
-import me.ryanw.overcaststats.api.OvercastPlayer;
-import me.ryanw.overcaststats.api.util.Callback;
 import me.ryanw.overcaststats.impl.OvercastStats;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +13,7 @@ import com.smartsteve.Undercast.DataContainer.ServerData;
 import com.smartsteve.Undercast.DataContainer.StatsData;
 
 public class ChatParser {
+	final OvercastStats overcastStat = new OvercastStats();
 	StatsData firstdata,lastdata;
 	ServerData serverdata;
 	boolean listen = false;
@@ -108,16 +107,16 @@ public class ChatParser {
     	 //  Parse Data From Homepage
 
     	if(message_unform.contains("Welcome to the Overcast Network Lobby!")){
-    		player.addChatMessage(new ChatComponentText("aif"));
+    		player.addChatMessage(new ChatComponentText(Minecraft.getMinecraft().thePlayer.getDisplayNameString()));
     		serverdata.setServer("Lobby");
     		if(isFirstJoin){
-    			(new OvercastStats()).getPlayerByNameAsync(Minecraft.getMinecraft().thePlayer.getDisplayNameString(), new Callback<OvercastPlayer>() {
-    		        @Override
+    			/*overcastStat.getPlayerByNameAsync("smartsteve", new Callback<OvercastPlayer>() {
     		        public void call(OvercastPlayer result) {
     		        	Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("gokfeo"));
     		           	firstdata = new StatsData(result.getGlobalStats().getGlobalKills(), result.getGlobalStats().getGlobalDeaths());
     		        }
-    		    });
+    		    });*/
+    			firstdata= (new WebParser()).getPlayerStat(Minecraft.getMinecraft().thePlayer.getDisplayNameString());
     		}
     		return;
     	}

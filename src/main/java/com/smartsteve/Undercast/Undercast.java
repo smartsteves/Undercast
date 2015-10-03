@@ -34,7 +34,7 @@ public class Undercast
     {
     	chatparser = new ChatParser(firststats,laststats,serverData);
     	displayratio = new DisplayRatio(firststats,laststats,option,serverData);
-    	ClientCommandHandler.instance.registerCommand(command)
+    	ClientCommandHandler.instance.registerCommand(new CommandHandle(option));
     }
     @EventHandler
     public void preinit(FMLPreInitializationEvent event) throws Throwable{

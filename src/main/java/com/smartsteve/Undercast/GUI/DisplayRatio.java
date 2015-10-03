@@ -39,7 +39,7 @@ public class DisplayRatio {
 	    public void displayRatio(RenderGameOverlayEvent.Post e){
 		 Minecraft mc = Minecraft.getMinecraft();
 		 if(firststats==null) return;
-		 if (mc.inGameHasFocus && !mc.gameSettings.showDebugInfo&&e.type==RenderGameOverlayEvent.ElementType.HOTBAR) {
+		 if (option.enable&&mc.inGameHasFocus && !mc.gameSettings.showDebugInfo&&e.type==RenderGameOverlayEvent.ElementType.HOTBAR) {
 			 int x = 2, y = 2;
 			 
 			 if (option.fps){
