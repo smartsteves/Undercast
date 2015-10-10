@@ -1,19 +1,18 @@
 package com.smartsteve.Undercast;
 
-import java.io.File;
-import java.io.IOException;
-
+import com.smartsteve.Undercast.DataContainer.OptionData;
+import com.smartsteve.Undercast.DataContainer.ServerData;
+import com.smartsteve.Undercast.DataContainer.StatsData;
+import com.smartsteve.Undercast.GUI.DisplayRatio;
+import com.smartsteve.Undercast.Parser.ChatParser;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import com.smartsteve.Undercast.DataContainer.OptionData;
-import com.smartsteve.Undercast.DataContainer.ServerData;
-import com.smartsteve.Undercast.DataContainer.StatsData;
-import com.smartsteve.Undercast.GUI.DisplayRatio;
-import com.smartsteve.Undercast.Parser.ChatParser;
+import java.io.File;
+import java.io.IOException;
 
 
 

@@ -1,11 +1,10 @@
 package com.smartsteve.Undercast;
 
+import com.smartsteve.Undercast.DataContainer.OptionData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
-
-import com.smartsteve.Undercast.DataContainer.OptionData;
 
 public class CommandHandle extends CommandBase{
 	OptionData option;
