@@ -1,5 +1,8 @@
 package com.smartsteve.Undercast.Parser;
 
+import com.smartsteve.Undercast.DataContainer.ModData;
+import com.smartsteve.Undercast.DataContainer.ServerData;
+import com.smartsteve.Undercast.DataContainer.StatsData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
@@ -8,21 +11,23 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import com.smartsteve.Undercast.DataContainer.ServerData;
-import com.smartsteve.Undercast.DataContainer.StatsData;
-
 public class ChatParser {
 	StatsData firstdata,lastdata;
 	ServerData serverdata;
+	ModData modData;
 	boolean listen = false;
-	public ChatParser(StatsData da, StatsData ld, ServerData sd){
+	public ChatParser(StatsData da, StatsData ld, ServerData sd, ModData modData){
 		firstdata = da;
 		lastdata=ld;
 		serverdata = sd;
+        this.modData = modData;
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 	@SubscribeEvent
     public void onChat(ClientChatReceivedEvent e){
+        if(!modData.isOvercast()){
+            return;
+        }
 		boolean isFirstJoin=true;
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
     	IChatComponent c = e.message;

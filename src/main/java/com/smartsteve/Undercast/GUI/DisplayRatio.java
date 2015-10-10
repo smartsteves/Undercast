@@ -1,24 +1,26 @@
 package com.smartsteve.Undercast.GUI;
 
+import com.smartsteve.Undercast.DataContainer.ModData;
+import com.smartsteve.Undercast.DataContainer.OptionData;
+import com.smartsteve.Undercast.DataContainer.ServerData;
+import com.smartsteve.Undercast.DataContainer.StatsData;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import com.smartsteve.Undercast.DataContainer.OptionData;
-import com.smartsteve.Undercast.DataContainer.ServerData;
-import com.smartsteve.Undercast.DataContainer.StatsData;
-
 public class DisplayRatio {
+	ModData modData;
 	StatsData firststats,laststats;
 	OptionData option;
 	ServerData serverData;
-	public DisplayRatio(StatsData first, StatsData last, OptionData op, ServerData d){
+	public DisplayRatio(StatsData first, StatsData last, OptionData op, ServerData d, ModData modData){
 		MinecraftForge.EVENT_BUS.register(this);
 		firststats = first;
 		laststats = last;
 		option = op;
 		serverData = d;
+		this.modData = modData;
 	}
 	/*
 	 * FPS
@@ -37,6 +39,9 @@ public class DisplayRatio {
 	 */
 	 @SubscribeEvent
 	    public void displayRatio(RenderGameOverlayEvent.Post e){
+         if(!modData.isOvercast()){
+             return;
+         }
 		 Minecraft mc = Minecraft.getMinecraft();
 		 if(firststats==null) return;
 		 if (option.enable&&mc.inGameHasFocus && !mc.gameSettings.showDebugInfo&&e.type==RenderGameOverlayEvent.ElementType.HOTBAR) {

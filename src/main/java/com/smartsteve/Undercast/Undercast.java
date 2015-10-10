@@ -1,5 +1,6 @@
 package com.smartsteve.Undercast;
 
+import com.smartsteve.Undercast.DataContainer.ModData;
 import com.smartsteve.Undercast.DataContainer.OptionData;
 import com.smartsteve.Undercast.DataContainer.ServerData;
 import com.smartsteve.Undercast.DataContainer.StatsData;
@@ -23,6 +24,7 @@ public class Undercast
     public static final String VERSION = "1.8.0.1";  //Beta 1
     public StatsData firststats = new StatsData();
     public StatsData laststats = new StatsData();
+    public ModData modData = new ModData();
     public OptionData option;
     public ServerData serverData = new ServerData();
     public File config;
@@ -31,8 +33,8 @@ public class Undercast
     @EventHandler
     public void init(FMLInitializationEvent event) throws IOException
     {
-    	chatparser = new ChatParser(firststats,laststats,serverData);
-    	displayratio = new DisplayRatio(firststats,laststats,option,serverData);
+    	chatparser = new ChatParser(firststats,laststats,serverData,modData);
+    	displayratio = new DisplayRatio(firststats,laststats,option,serverData,modData);
     	ClientCommandHandler.instance.registerCommand(new CommandHandle(option));
     }
     @EventHandler
