@@ -25,13 +25,23 @@ public class ChatParser {
 	}
 	@SubscribeEvent
     public void onChat(ClientChatReceivedEvent e){
-        if(!modData.isOvercast()){
-            return;
-        }
 		boolean isFirstJoin=true;
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-    	IChatComponent c = e.message;
-    	String message_unform = c.getUnformattedText();
+		IChatComponent c = e.message;
+		String message_unform = c.getUnformattedText();
+		//  Parse Data From Homepage
+		if(message_unform.contains("Welcome to the Overcast Network Lobby!")){
+			serverdata.setServer("Lobby");
+			modData.setOvercast(true);
+			StatsData temp = WebParser.getPlayerStat(Minecraft.getMinecraft().thePlayer.getDisplayNameString());
+			firstdata.setKill(temp.getKill());
+			firstdata.setDeath(temp.getDeath());
+			Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(Boolean.toString(modData.isOvercast())));
+			return;
+		}
+        if(false){
+            return;
+        }
     	/*
     	 * Filter useless chat
     	 */
@@ -113,21 +123,11 @@ public class ChatParser {
     	
     	// Filter Team Information
 
-    	if(message_unform.startsWith("You joined")){
-    		serverdata.setTeam(message_unform.replace("You joined ", ""));
-    		serverdata.setTeamColor(String.valueOf(c.getFormattedText().replace("You joined ","").toCharArray()[7]));
-    		return;
-    	}
-
-    	 //  Parse Data From Homepage
-
-    	if(message_unform.contains("Welcome to the Overcast Network Lobby!")){
-    		serverdata.setServer("Lobby");
-    		StatsData temp = WebParser.getPlayerStat(Minecraft.getMinecraft().thePlayer.getDisplayNameString());
-    		firstdata.setKill(temp.getKill());
-    		firstdata.setDeath(temp.getDeath());
-    		return;
-    	}
+    	if(message_unform.startsWith("You joined")) {
+			serverdata.setTeam(message_unform.replace("You joined ", ""));
+			serverdata.setTeamColor(String.valueOf(c.getFormattedText().replace("You joined ", "").toCharArray()[7]));
+			return;
+		}
 
     	 // Filter Kill
 
@@ -150,7 +150,7 @@ public class ChatParser {
     		return;
     	}    	
     	if(message_unform.startsWith("You are currently on ")){
-    		serverdata.setServer(message_unform.replace("You are currently on ",""));
+    		serverdata.setServer(message_unform.replace("You are currently on ", ""));
     		return;
     	}
     }

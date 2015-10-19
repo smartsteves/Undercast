@@ -6,6 +6,7 @@ import com.smartsteve.Undercast.DataContainer.ServerData;
 import com.smartsteve.Undercast.DataContainer.StatsData;
 import com.smartsteve.Undercast.GUI.DisplayRatio;
 import com.smartsteve.Undercast.Parser.ChatParser;
+import com.smartsteve.Undercast.Parser.ConnectionParser;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -25,6 +26,7 @@ public class Undercast
     public StatsData firststats = new StatsData();
     public StatsData laststats = new StatsData();
     public ModData modData = new ModData();
+    public ConnectionParser connectionParser;
     public OptionData option;
     public ServerData serverData = new ServerData();
     public File config;
@@ -36,6 +38,7 @@ public class Undercast
     	chatparser = new ChatParser(firststats,laststats,serverData,modData);
     	displayratio = new DisplayRatio(firststats,laststats,option,serverData,modData);
     	ClientCommandHandler.instance.registerCommand(new CommandHandle(option));
+        connectionParser = new ConnectionParser(modData);
     }
     @EventHandler
     public void preinit(FMLPreInitializationEvent event) throws Throwable{

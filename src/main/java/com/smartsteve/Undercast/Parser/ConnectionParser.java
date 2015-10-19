@@ -11,17 +11,25 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
  */
 public class ConnectionParser {
     ModData modData;
+    PingParser parser;
     public ConnectionParser(ModData modData) {
         this.modData = modData;
         MinecraftForge.EVENT_BUS.register(this);
     }
     @SubscribeEvent
     public void onLogin(PlayerEvent.PlayerLoggedInEvent event){
-        if(Minecraft.getMinecraft().getCurrentServerData().serverIP.contains(".oc.tc")){
+        /*if(Minecraft.getMinecraft().getCurrentServerData().serverIP.contains(".oc.tc")){
             modData.setOvercast(true);
+            parser.start();
         }
         else{
             modData.setOvercast(false);
-        }
+        }*/
+        modData.setOvercast(true);
+        System.out.println("abc");
+    }
+    public void onLogout(PlayerEvent.PlayerLoggedOutEvent event){
+        modData.setOvercast(false);
+        parser.stopParsing();
     }
 }

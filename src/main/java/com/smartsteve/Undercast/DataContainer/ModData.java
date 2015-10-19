@@ -18,6 +18,6 @@ public class ModData {
         this.overcast = overcast;
     }
 
-    private boolean overcast;
+    private boolean overcast = true;
 
 }

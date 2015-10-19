@@ -39,7 +39,7 @@ public class DisplayRatio {
 	 */
 	 @SubscribeEvent
 	    public void displayRatio(RenderGameOverlayEvent.Post e){
-         if(!modData.isOvercast()){
+         if(false){
              return;
          }
 		 Minecraft mc = Minecraft.getMinecraft();
@@ -89,6 +89,7 @@ public class DisplayRatio {
 				 mc.fontRendererObj.drawStringWithShadow("KS: \u00A75" + Integer.toString(laststats.getKillStreak())+"/"+Integer.toString(laststats.getMaxKillStreak()), x, y, 16777215);
 				 y+=mc.fontRendererObj.FONT_HEIGHT;
 			 }
+             mc.fontRendererObj.drawStringWithShadow("Ping: "+serverData.getPing(),x,y,16777215);
 		 }
 	 }
 }

@@ -5,8 +5,9 @@ public class ServerData {
 	private String map, nextMap;
 	private String team;
 	private String teamColor;
-	int playtime;
-	int matchtime;
+	private String ping;
+	private int playtime;
+	private int matchtime;
 	public ServerData(){
 		this("","","","", "", 0);
 	}
@@ -36,9 +37,8 @@ public class ServerData {
 	public void setTeamColor(String teamColor){
 		this.teamColor = teamColor;
 	}
-	public String getServer(){
-		return server;
-	}
+    public void setPing(String ping){ this.ping = ping; }
+	public String getServer(){ return server; }
 	public String getMap(){
 		return map;
 	}
@@ -54,6 +54,7 @@ public class ServerData {
 	public String getTeamColor(){
 		return this.teamColor;
 	}
+    public String getPing(){ return this.ping; }
 	public boolean isLobby(){
 		if(server.startsWith("Lobby")||server.contains("Lobby")||server.equalsIgnoreCase("lobby"))return true;
 		return false;
