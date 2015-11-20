@@ -1,35 +1,38 @@
 package com.smartsteve.Undercast.Parser;
 
-import com.smartsteve.Undercast.DataContainer.ModData;
+import com.smartsteve.Undercast.DataContainer.ServerData;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.client.gui.GuiDisconnected;
+import net.minecraft.client.gui.GuiDownloadTerrain;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 /**
  * Created by JUN on 2015-10-10.
  */
+/*
+ * This Class Parse Connection From GUI Statue.
+ */
 public class ConnectionParser {
-    ModData modData;
+    ServerData serverData;
     PingParser parser;
-    public ConnectionParser(ModData modData) {
-        this.modData = modData;
-        MinecraftForge.EVENT_BUS.register(this);
+    public ConnectionParser(ServerData serverData) {
+        this.serverData = serverData;
+        //parser= new PingParser(serverData);
     }
     @SubscribeEvent
-    public void onLogin(PlayerEvent.PlayerLoggedInEvent event){
-        /*if(Minecraft.getMinecraft().getCurrentServerData().serverIP.contains(".oc.tc")){
-            modData.setOvercast(true);
-            parser.start();
+    public void onGuiOpen(GuiOpenEvent event){
+        if(event.gui instanceof GuiDownloadTerrain){
+            if(Minecraft.getMinecraft().getCurrentServerData().serverIP.contains(".oc.tc")){
+                //serverData.setOvercast(true);
+            }
+            else{
+                //serverData.setOvercast(false);
+            }
         }
-        else{
-            modData.setOvercast(false);
-        }*/
-        modData.setOvercast(true);
-        System.out.println("abc");
-    }
-    public void onLogout(PlayerEvent.PlayerLoggedOutEvent event){
-        modData.setOvercast(false);
-        parser.stopParsing();
+        if(event.gui instanceof GuiDisconnected || event.gui instanceof GuiMainMenu){
+            //serverData.setOvercast(false);
+        }
     }
 }

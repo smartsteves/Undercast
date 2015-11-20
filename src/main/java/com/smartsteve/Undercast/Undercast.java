@@ -1,17 +1,16 @@
 package com.smartsteve.Undercast;
 
-import com.smartsteve.Undercast.DataContainer.ModData;
 import com.smartsteve.Undercast.DataContainer.OptionData;
 import com.smartsteve.Undercast.DataContainer.ServerData;
-import com.smartsteve.Undercast.DataContainer.StatsData;
 import com.smartsteve.Undercast.GUI.DisplayRatio;
 import com.smartsteve.Undercast.Parser.ChatParser;
 import com.smartsteve.Undercast.Parser.ConnectionParser;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientCommandHandler;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,25 +21,31 @@ import java.io.IOException;
 public class Undercast
 {
     public static final String MODID = "Undercast";
-    public static final String VERSION = "1.8.0.1";  //Beta 1
-    public StatsData firststats = new StatsData();
-    public StatsData laststats = new StatsData();
-    public ModData modData = new ModData();
+    public static final String VERSION = "1.8.0.2";
     public ConnectionParser connectionParser;
     public OptionData option;
-    public ServerData serverData = new ServerData();
+    public ServerData serverData;
     public File config;
     ChatParser chatparser;
     DisplayRatio displayratio;
     @EventHandler
     public void init(FMLInitializationEvent event) throws IOException
     {
-    	chatparser = new ChatParser(firststats,laststats,serverData,modData);
-    	displayratio = new DisplayRatio(firststats,laststats,option,serverData,modData);
-    	ClientCommandHandler.instance.registerCommand(new CommandHandle(option));
-        connectionParser = new ConnectionParser(modData);
+        option = new OptionData();
+        serverData = new ServerData();
+        serverData.applyWebData(Minecraft.getMinecraft().getSession().getUsername());
+        System.out.println(Minecraft.getMinecraft().getSession().getUsername());
+    	chatparser = new ChatParser(serverData,option);
+    	displayratio = new DisplayRatio(option,serverData);
+    	ClientCommandHandler.instance.registerCommand(new CommandHandle(option,serverData));
+        connectionParser = new ConnectionParser(serverData);
+        MinecraftForge.EVENT_BUS.register(connectionParser);
+        MinecraftForge.EVENT_BUS.register(displayratio);
+        MinecraftForge.EVENT_BUS.register(chatparser);
+
+
     }
-    @EventHandler
+    /*@EventHandler
     public void preinit(FMLPreInitializationEvent event) throws Throwable{
    	 	config = new File(event.getSuggestedConfigurationFile().getParentFile().getAbsolutePath() + "/UndercastSetting.data");
    	 	if(config.exists()){
@@ -52,6 +57,6 @@ public class Undercast
    	 		config.createNewFile();
    	 		option = new OptionData();
    	 	}
-    }
+    }*/
 
 }
