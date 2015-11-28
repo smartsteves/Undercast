@@ -1,8 +1,6 @@
 package com.smartsteve.Undercast.Parser;
 
 import com.smartsteve.Undercast.DataContainer.ServerData;
-import com.smartsteve.Undercast.Util;
-import net.minecraft.client.Minecraft;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,24 +11,27 @@ import java.io.InputStreamReader;
 /*
  * This Class Parse Ping using command prompt
  */
-public class PingParser extends Thread{
+public class PingParser extends Thread {
+    ServerData serverData;
     private String server = "127.0.0.1";
     private boolean running;
-    ServerData serverData;
 
-    public PingParser(ServerData serverData){
+    public PingParser(ServerData serverData) {
         this.serverData = serverData;
     }
-    public void startParsing(String serverName){
+
+    public void startParsing(String serverName) {
         server = serverName;
         this.start();
         running = true;
     }
-    public void stopParsing(){
+
+    public void stopParsing() {
         running = false;
     }
+
     @Override
-    public void run(){
+    public void run() {
         Process process;
         try {
             String currentServer = server;
@@ -39,20 +40,19 @@ public class PingParser extends Thread{
             while (true) {
                 String line;
                 line = bf.readLine();
-                if(line==null) continue;
+                if (line == null) continue;
                 if (line.contains("=") && line.split("=").length >= 3) {
                     serverData.setPing(line.split("=")[2].split("ms")[0]);
                 }
                 if (!line.contains("=")) {
                     serverData.setPing("BOOM!");
                 }
-                if(!running||!currentServer.equals(server)){
+                if (!running || !currentServer.equals(server)) {
                     break;
                 }
             }
             process.destroy();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
